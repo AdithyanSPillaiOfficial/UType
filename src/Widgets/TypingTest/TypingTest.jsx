@@ -56,8 +56,14 @@ function TypingTest() {
   
   var textArr = Array.from(TypeText)
   return (
-    <div>
+    <div className={styles.typingtest}>
       <Timer initialSeconds={60} onTimerEnd={()=> calculateWPM(TypeText,textInp, 1,Math.sqrt(wrongLetters),setWpm,setAccuracy)} />
+      {
+          wpm ? <div className={styles.statsdiv}>
+          <span>Accuracy : {accuracy}%</span>
+          <span>WPM : {wpm}</span>
+        </div> : 
+         
       <div>
         {
           textArr.map((letter, index) => {
@@ -70,15 +76,11 @@ function TypingTest() {
           })
         }
       </div>
+      }
       <br />
       <input type="text" className={styles.hiddeninput} onChange={(e) => setTextInp(e.target.value)} autoFocus />
 
-        {
-          wpm ? <div className={styles.statsdiv}>
-          <span>Accuracy : {accuracy}%</span>
-          <span>WPM : {wpm}</span>
-        </div> : null
-        }
+        
     </div>
   )
 }

@@ -1,3 +1,6 @@
+.typingtest {
+    width: 100%;
+}
 .textletter {
     font-size: 32px;
     color: rgb(158, 158, 158);
@@ -13,4 +16,5 @@
     font-weight: bold;
     justify-content: space-around;
     font-size: 25px;
+    width: 100%;
 }
