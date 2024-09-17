@@ -66,7 +66,7 @@ function TypingTest() {
                 wrongLetters++;
               }
             } 
-            return(<span className={styles.textletter} style={textInp.length > index ? { color: letter === textInp.charAt(index) ? 'white' : 'red' } : null}>{letter}</span>)
+            return(<span key={index} className={styles.textletter} style={textInp.length > index ? { color: letter === textInp.charAt(index) ? 'white' : 'red' } : null}>{letter}</span>)
           })
         }
       </div>
