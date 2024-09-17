@@ -1,0 +1,26 @@
+.typingHint {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.hintContainer {
+  font-size: 24px;
+  font-family: monospace; /* Use a monospaced font to align characters properly */
+  position: relative;
+  display: inline-block;
+}
+
+.typingInput {
+  outline: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px; /* Width of the cursor */
+  height: 24px; /* Height of the cursor */
+  background-color: white; /* Color of the cursor */
+}

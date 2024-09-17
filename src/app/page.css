@@ -1,0 +1,22 @@
+main {
+    margin: 10px;
+    height: 100%;
+}
+.titlebar {
+    background-color: #525252;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.typingtest {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 80%;
+}
+

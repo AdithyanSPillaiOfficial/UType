@@ -1,0 +1,16 @@
+.textletter {
+    font-size: 32px;
+    color: rgb(158, 158, 158);
+}
+
+.hiddeninput {
+    opacity: 0;
+}
+
+.statsdiv {
+    margin-top: 100px;
+    display: flex;
+    font-weight: bold;
+    justify-content: space-around;
+    font-size: 25px;
+}

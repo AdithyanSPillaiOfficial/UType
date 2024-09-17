@@ -1,0 +1,100 @@
+"use client";
+import React, { useState, useEffect, useRef } from "react";
+import styles from "./TypingTest.module.css"; // Use CSS modules for styling
+
+const TypingTest = () => {
+  const hintText = "Type this text correctly!";
+  const [inputValue, setInputValue] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const inputRef = useRef(null);
+  const cursorRef = useRef(null);
+  const mirrorRef = useRef(null);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    setCurrentIndex(value.length);
+  };
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (mirrorRef.current && cursorRef.current) {
+      const textWidth = mirrorRef.current.getBoundingClientRect().width;
+      cursorRef.current.style.left = `${textWidth}px`;
+    }
+  }, [inputValue]);
+
+  const getLetterColor = (index) => {
+    if (index >= inputValue.length) return "rgba(255, 255, 255, 0.5)"; // semi-transparent
+    return hintText[index] === inputValue[index] ? "white" : "red";
+  };
+
+  return (
+    <div className={styles.typingHint}>
+      <div className={styles.hintContainer}>
+        {hintText.split("").map((letter, index) => (
+          <span
+            key={index}
+            style={{
+              color: getLetterColor(index),
+              position: "relative",
+              display: "inline-block",
+            }}
+          >
+            {letter === " " ? "\u00A0" : letter} {/* Render space as non-breaking space */}
+          </span>
+        ))}
+        <span ref={cursorRef} className={styles.cursor} style={{ position: "absolute", top: "0" }}>
+          |
+        </span>
+      </div>
+
+      <div className={styles.inputContainer} style={{ position: "relative" }}>
+        {/* Hidden mirrored text */}
+        <span
+          ref={mirrorRef}
+          className={styles.mirror}
+          style={{
+            visibility: "hidden",
+            whiteSpace: "pre",
+            fontFamily: "inherit",
+            fontSize: "25px", // Increment font size to 25px
+            letterSpacing: "0.5em", // Adjust space between words
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }}
+        >
+          {inputValue.split(" ").map((char) => (char === " " ? "\u00A0" : char)).join("")}
+        </span>
+
+        {/* Actual input box */}
+        <input
+          ref={inputRef}
+          type="text"
+          value={inputValue}
+          onChange={handleChange}
+          className={styles.typingInput}
+          style={{
+            backgroundColor: "transparent",
+            border: "none",
+            outline: "none",
+            color: "transparent",
+            caretColor: "transparent", // Hide the caret
+            position: "absolute",
+            left: 0,
+            top: 0,
+          }}
+          autoFocus
+        />
+      </div>
+    </div>
+  );
+};
+
+export default TypingTest;
