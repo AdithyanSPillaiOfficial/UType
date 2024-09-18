@@ -4,7 +4,7 @@ import styles from "./TypingTest.module.css"
 import Timer from '../Timer/Timer';
 import generateRandomSentence from './RandomScentance';
 import Cookies from 'js-cookie';
-const TypeText = generateRandomSentence(50);
+var TypeText = generateRandomSentence(50);
 var wrongLetters = 0;
 
 async function calculateWPM(TypeText, textInp, min, wrongLetters, setWpm, setAccuracy, setPerformance) {
@@ -84,10 +84,19 @@ function TypingTest() {
     }
   }, [textInp]);
 
+  useEffect(() => {
+    if(Cookies.get('customtext')) {
+      TypeText = Cookies.get('customtext');
+      setTextArr(Array.from(TypeText));
+      Cookies.remove('customtext');
+    }
+  }, []);
+
+
   
 
 
-  var textArr = Array.from(TypeText)
+  const [textArr, setTextArr] = useState(Array.from(TypeText));
   return (
     <div className={styles.typingtest}>
       <Timer initialSeconds={60} onTimerEnd={() => calculateWPM(TypeText, textInp, 1, Math.sqrt(wrongLetters), setWpm, setAccuracy, setPerformance)} startTimer={timerRunning} />

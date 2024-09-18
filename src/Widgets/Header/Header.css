@@ -27,3 +27,8 @@
     color: black;
     height: min-content;
 }
+
+.endpanel {
+    display: flex;
+    flex-direction: row;
+}
