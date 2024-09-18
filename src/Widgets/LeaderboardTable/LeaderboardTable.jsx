@@ -13,7 +13,7 @@ function LeaderboardTable() {
                 },
             });
             const result = await res.json();
-            console.log(result.leaderboard);
+            console.log(result);
             result.leaderboard.sort((a, b) => b.wpm - a.wpm);
             setData(result.leaderboard);
         }

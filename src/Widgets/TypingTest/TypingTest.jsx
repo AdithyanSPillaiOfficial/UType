@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./TypingTest.module.css"
 import Timer from '../Timer/Timer';
 import generateRandomSentence from './RandomScentance';
@@ -8,7 +8,6 @@ const TypeText = generateRandomSentence(50);
 var wrongLetters = 0;
 
 async function calculateWPM(TypeText, textInp, min, wrongLetters, setWpm, setAccuracy) {
-  alert(wrongLetters);
   const textArr = Array.from(TypeText);
   const inpArr = Array.from(textInp);
   var correctWords = 0;
@@ -74,12 +73,21 @@ function TypingTest() {
   //const [wrongLetters, setWrongLetters] = useState(0)
   const [wpm, setWpm] = useState(null);
   const [accuracy, setAccuracy] = useState(0);
+  const [timerRunning, setTimerRunning] = useState(false);
+
+  useEffect(() => {
+    if(!timerRunning && textInp.length>0){
+      setTimerRunning(true);
+    }
+  }, [textInp]);
+
+  
 
 
   var textArr = Array.from(TypeText)
   return (
     <div className={styles.typingtest}>
-      <Timer initialSeconds={60} onTimerEnd={() => calculateWPM(TypeText, textInp, 1, Math.sqrt(wrongLetters), setWpm, setAccuracy)} />
+      <Timer initialSeconds={60} onTimerEnd={() => calculateWPM(TypeText, textInp, 1, Math.sqrt(wrongLetters), setWpm, setAccuracy)} startTimer={timerRunning} />
       {
         wpm ? <div className={styles.statsdiv}>
           <span>Accuracy : {accuracy}%</span>

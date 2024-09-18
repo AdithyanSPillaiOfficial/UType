@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTimer } from 'react-timer-hook';
 
-const Timer = ({ initialSeconds, onTimerEnd }) => {
+const Timer = ({ initialSeconds, onTimerEnd, startTimer }) => {
     const expiryTimestamp = new Date();
     expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + initialSeconds)
 
@@ -10,7 +10,16 @@ const Timer = ({ initialSeconds, onTimerEnd }) => {
         minutes,
         isRunning,
         restart,
-    } = useTimer({ expiryTimestamp, onExpire: onTimerEnd });
+        start,
+    } = useTimer({ expiryTimestamp, onExpire: onTimerEnd, autoStart: false});
+
+
+    useEffect(() => {
+        if (startTimer) {
+            start();
+        }
+    }, [startTimer]);
+
 
     return (
         <div style={{ textAlign: 'center' }}>
