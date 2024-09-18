@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 const TypeText = generateRandomSentence(50);
 var wrongLetters = 0;
 
-async function calculateWPM(TypeText, textInp, min, wrongLetters, setWpm, setAccuracy) {
+async function calculateWPM(TypeText, textInp, min, wrongLetters, setWpm, setAccuracy, setPerformance) {
   const textArr = Array.from(TypeText);
   const inpArr = Array.from(textInp);
   var correctWords = 0;
@@ -38,9 +38,11 @@ async function calculateWPM(TypeText, textInp, min, wrongLetters, setWpm, setAcc
     }
   });
 
-  const accuracy = (correctLetters / textArr.length) * 100;
+  const performance = (correctLetters / textArr.length) * 100;
   //alert("Accuracy : "+accuracy+"%");
-  setAccuracy(accuracy)
+  setPerformance(performance)
+  const accuracy = (correctLetters / inpArr.length)* 100;
+  setAccuracy(accuracy);
   const wpm = correctWords / min;
   //alert('WPM : '+wpm)
   setWpm(wpm);
@@ -73,6 +75,7 @@ function TypingTest() {
   //const [wrongLetters, setWrongLetters] = useState(0)
   const [wpm, setWpm] = useState(null);
   const [accuracy, setAccuracy] = useState(0);
+  const [performance, setPerformance] = useState(0);
   const [timerRunning, setTimerRunning] = useState(false);
 
   useEffect(() => {
@@ -87,11 +90,12 @@ function TypingTest() {
   var textArr = Array.from(TypeText)
   return (
     <div className={styles.typingtest}>
-      <Timer initialSeconds={60} onTimerEnd={() => calculateWPM(TypeText, textInp, 1, Math.sqrt(wrongLetters), setWpm, setAccuracy)} startTimer={timerRunning} />
+      <Timer initialSeconds={60} onTimerEnd={() => calculateWPM(TypeText, textInp, 1, Math.sqrt(wrongLetters), setWpm, setAccuracy, setPerformance)} startTimer={timerRunning} />
       {
         wpm ? <div className={styles.statsdiv}>
           <span>Accuracy : {accuracy}%</span>
           <span>WPM : {wpm}</span>
+          <span>Performance : {performance}</span>
         </div> :
 
           <div>
