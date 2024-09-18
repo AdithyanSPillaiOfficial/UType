@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import styles from "./TypingTest.module.css"
 import Timer from '../Timer/Timer';
 import generateRandomSentence from './RandomScentance';
+import Cookies from 'js-cookie';
 const TypeText = generateRandomSentence(50);
 var wrongLetters = 0;
 
@@ -52,7 +53,7 @@ async function calculateWPM(TypeText, textInp, min, wrongLetters, setWpm, setAcc
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: localStorage.getItem('uname'), wpm }), // Send data in JSON format
+        body: JSON.stringify({ name: Cookies.get('uname'), wpm }), // Send data in JSON format
       });
 
       const result = await res.json();

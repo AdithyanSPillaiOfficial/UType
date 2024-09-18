@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 // Define the path to the database file
-const dbFilePath = path.join(__dirname, 'db.json');
+//const dbFilePath = path.join(__dirname, 'db.json');
+const dbFilePath = path.join('db.json');
 
 // Helper function to read the database file
 const readDatabase = () => {
