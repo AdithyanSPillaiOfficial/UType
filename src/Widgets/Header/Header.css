@@ -1,0 +1,29 @@
+.titlebar {
+    background-color: #525252;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.nameinput {
+    justify-self: flex-end;
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    background-color: #3b3b3b;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.nameinput input {
+    color: black;
+    height: min-content;
+}

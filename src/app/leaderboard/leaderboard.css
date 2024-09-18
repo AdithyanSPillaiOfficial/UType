@@ -1,0 +1,13 @@
+.leaderboard {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    font-size: 25px;
+    font-weight: bold;
+}
