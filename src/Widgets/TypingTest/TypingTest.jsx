@@ -47,7 +47,8 @@ async function calculateWPM(TypeText, textInp, min, wrongLetters, setWpm, setAcc
   //alert('WPM : '+wpm)
   setWpm(wpm);
 
-  if (Cookies.get('uname') != undefined) {
+  if (Cookies.get('uname') != undefined && Cookies.get('uname') != "") {
+    console.log(Cookies.get('uname'));
     try {
       const res = await fetch('/api/database/addscore', {
         method: 'POST',
