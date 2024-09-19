@@ -122,8 +122,7 @@ function TypingTest() {
       }
       <br />
       <input type="text" className={styles.hiddeninput} onChange={(e) => setTextInp(e.target.value)} autoFocus />
-
-
+      <div className={styles.retake} onClick={()=> window.location.reload()}>Reload Test</div>
     </div>
   )
 }

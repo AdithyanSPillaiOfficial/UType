@@ -1,5 +1,9 @@
 .typingtest {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    justify-items: center;
+    align-items: center;
 }
 .textletter {
     font-size: 32px;
@@ -17,4 +21,12 @@
     justify-content: space-around;
     font-size: 25px;
     width: 100%;
+}
+
+.retake {
+    background-color: #525252;
+    padding: 5px;
+    border-radius: 3px;
+    width: 150px;
+    cursor: pointer;
 }
