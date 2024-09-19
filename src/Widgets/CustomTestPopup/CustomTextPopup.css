@@ -19,10 +19,17 @@
 
 textarea {
     color: black;
+    padding: 10px;
+    background-color: rgb(168, 166, 166);
+}
+
+textarea ::placeholder {
+    color: black;
 }
 
 .submitbtn {
     background-color: #999999;
     border-radius: 20px;
     padding: 20px;
+    text-align: center;
 }
