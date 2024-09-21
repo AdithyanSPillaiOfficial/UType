@@ -30,3 +30,26 @@
     width: 150px;
     cursor: pointer;
 }
+
+.cursor {
+    position: relative;
+    transition: all 0.2s ease-in-out; /* Smooth transition for the cursor */
+  }
+  
+  .cursor::after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    border-left: 1px solid white;
+    height: 1.2em; /* Adjust height to match the letter size */
+    animation: blink 0.7s steps(1) infinite;
+    transition: all 0.2s ease-in-out; /* Smooth transition for the cursor */
+  }
+  
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+  
+  

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from "./TypingTest.module.css"
 import Timer from '../Timer/Timer';
 import generateRandomSentence from './RandomScentance';
@@ -78,6 +78,9 @@ function TypingTest() {
   const [accuracy, setAccuracy] = useState(0);
   const [performance, setPerformance] = useState(0);
   const [timerRunning, setTimerRunning] = useState(false);
+  
+
+  const inputRef = useRef(null);
 
   useEffect(() => {
     if(!timerRunning && textInp.length>0){
@@ -94,10 +97,14 @@ function TypingTest() {
   }, []);
 
 
+  function handleTextClick() {
+    inputRef.current.focus();
+  }
   
 
 
   const [textArr, setTextArr] = useState(Array.from(TypeText));
+  const cursorIndex = textInp.length;
   return (
     <div className={styles.typingtest}>
       <Timer initialSeconds={60} onTimerEnd={() => calculateWPM(TypeText, textInp, 1, Math.sqrt(wrongLetters), setWpm, setAccuracy, setPerformance)} startTimer={timerRunning} />
@@ -108,7 +115,7 @@ function TypingTest() {
           <span>Performance : {performance}</span>
         </div> :
 
-          <div>
+          <div onClick={handleTextClick}>
             {
               textArr.map((letter, index) => {
                 if (textInp.length > index) {
@@ -116,13 +123,13 @@ function TypingTest() {
                     wrongLetters++;
                   }
                 }
-                return (<span key={index} className={styles.textletter} style={textInp.length > index ? { color: letter === textInp.charAt(index) ? 'white' : 'red' } : null}>{letter}</span>)
+                return (<span key={index} className={`${styles.textletter} ${index === cursorIndex ? styles.cursor : ''}`} style={textInp.length > index ? { color: letter === textInp.charAt(index) ? 'white' : 'red' } : null}>{letter}</span>)
               })
             }
           </div>
       }
       <br />
-      <input type="text" className={styles.hiddeninput} onChange={(e) => setTextInp(e.target.value)} autoFocus />
+      <input type="text" ref={inputRef} className={styles.hiddeninput} onChange={(e) => setTextInp(e.target.value)} autoFocus />
       <div className={styles.retake} onClick={()=> window.location.reload()}>Reload Test</div>
     </div>
   )
