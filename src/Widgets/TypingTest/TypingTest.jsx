@@ -86,6 +86,10 @@ function TypingTest() {
     if(!timerRunning && textInp.length>0){
       setTimerRunning(true);
     }
+    if(textInp == TypeText) {
+      setTimerRunning(false);
+      calculateWPM(TypeText, textInp, 1, Math.sqrt(wrongLetters), setWpm, setAccuracy, setPerformance)
+    }
   }, [textInp]);
 
   useEffect(() => {

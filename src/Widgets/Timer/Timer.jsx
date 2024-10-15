@@ -11,12 +11,16 @@ const Timer = ({ initialSeconds, onTimerEnd, startTimer }) => {
         isRunning,
         restart,
         start,
+        pause,
     } = useTimer({ expiryTimestamp, onExpire: onTimerEnd, autoStart: false});
 
 
     useEffect(() => {
         if (startTimer) {
             start();
+        }
+        else {
+            pause();
         }
     }, [startTimer]);
 
